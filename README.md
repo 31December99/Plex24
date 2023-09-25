@@ -32,12 +32,19 @@ Admin commands
 ## Configuration ( .env file)
 
 session_name=plex24h
+
 api_id=your telegram data
+
 api_key=your telegram data
+
 bot_token=your telegram bot data
+
 adminId= telegram adimin user id
+
 interroga= update time in seconds
+
 serverIp= plex server IP
+
 serverToken=plex token
 
 
