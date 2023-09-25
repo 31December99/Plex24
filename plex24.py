@@ -18,7 +18,6 @@ from decouple import config
 session = config('session_name')
 api_id = config('api_id', cast=int)
 api_key = config('api_key')
-notification = config('notification')
 bot_token = config('bot_token')
 # Ogni quanti secondi interroga Plex
 interroga = config('interroga', cast=int)
@@ -650,8 +649,8 @@ class PlexAdmin(MyPlex):
 
             if datetime.now() > scadenza and stato != 'scaduto':
                 # Invio una notifica all'Admin
-                await client.send_message(entity=notification, message=f"Nome: {username} Email: {user_email} "
-                                                                       f"Periodo scaduto !")
+                await client.send_message(entity=adminId, message=f"Nome: {username} Email: {user_email} "
+                                                                  f"Periodo scaduto !")
 
                 # Scaduto il tempo rimuove le librerie ma non rimuove l'utente dall'elenco amici dell'Admin
                 await self.db_users.update_status('plex24h', user_email, 'scaduto')
@@ -677,7 +676,7 @@ class PlexAdmin(MyPlex):
     async def plexdel(self, cmd) -> bool:
 
         """
-        Rimuovi un user dalla lista friend
+        Rimuovi un invito
 
         :return: ritorna esito
         """
